@@ -1,6 +1,6 @@
+from distutils.log import debug
 import os
 import pickle
-from PIL import Image
 import numpy as np
 from keras.preprocessing import image
 from flask import Flask, render_template, request, send_from_directory
@@ -46,5 +46,5 @@ def submission():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
 
