@@ -1,5 +1,3 @@
-from nis import cat
-from unicodedata import name
 import os
 import pickle
 from PIL import Image
