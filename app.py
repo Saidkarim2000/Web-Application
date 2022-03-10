@@ -17,7 +17,7 @@ def predict_label(f_path):
     x /= 255
     x = np.expand_dims(x, axis=0)
     images = np.vstack([x])
-    classes = model_pkl.predict(images, batch_size=32)
+    classes = model_pkl.predict(images, batch_size=10)
     print(classes[0])
     if classes[0]>0.5:
         return (" Dog")
