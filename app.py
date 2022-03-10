@@ -24,7 +24,7 @@ def predict_label(f_path):
     else:
         return (" Cat")            
 
-path = app.config["UPLOADED_IMAGES"] = "static/uploads"
+path = app.config["UPLOADED_IMAGES"] = "static"
 
 @app.route("/")
 def home():
@@ -35,7 +35,7 @@ def submission():
     try:
         if request.method == 'POST':  
             f = request.files['file']  
-            f_path = "static/uploads/" + f.filename
+            f_path = "static/" + f.filename
             f.save(f_path) 
             p = predict_label(f_path)
             return render_template("success.html", prediction = p, f_path=f_path)  
