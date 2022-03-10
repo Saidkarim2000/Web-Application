@@ -1,28 +1,10 @@
 from distutils.log import debug
 import os
-import pickle
-import numpy as np
-from keras.preprocessing import image
+import model_load
 from flask import Flask, render_template, request, send_from_directory
 
 
-app = Flask(__name__)
-
-
-# model_pkl = pickle.load(open('cats_vs_dogs_model.pkl','rb'))
-
-# def predict_label(f_path):
-#     img = image.load_img(f_path, target_size=(150, 150))
-#     x = image.img_to_array(img)
-#     x /= 255
-#     x = np.expand_dims(x, axis=0)
-#     images = np.vstack([x])
-#     classes = model_pkl.predict(images, batch_size=10)
-#     print(classes[0])
-#     if classes[0]>0.5:
-#         return (" Dog")
-#     else:
-#         return (" Cat")            
+app = Flask(__name__)           
 
 path = app.config["UPLOADED_IMAGES"] = "static"
 
@@ -37,7 +19,7 @@ def submission():
             f = request.files['file']  
             f_path = "static/" + f.filename
             f.save(f_path) 
-            p = predict_label(f_path)
+            p = model_load.predict_label(f_path)
             return render_template("success.html", prediction = p, f_path=f_path)  
         
     except:
