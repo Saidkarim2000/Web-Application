@@ -1,6 +1,6 @@
 from distutils.log import debug
 import os
-# import model_load
+import model_load
 from flask import Flask, render_template, request, send_from_directory
 
 
@@ -19,7 +19,7 @@ def submission():
             f = request.files['file']  
             f_path = "static/" + f.filename
             f.save(f_path) 
-#             p = model_load.predict_label(f_path)
+            p = model_load.predict_label(f_path)
             return render_template("success.html", prediction = p, f_path=f_path)  
         
     except:
